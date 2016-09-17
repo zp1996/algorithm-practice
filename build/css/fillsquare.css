@@ -1,0 +1,39 @@
+@charset "utf-8";
+header {
+  text-align: center;
+}
+.main {
+  width: 1000px;
+  margin: 100px auto;
+}
+.row {
+  width: 164px;
+  height: 41px;
+  margin: auto;
+}
+.col {
+  width: 40px;
+  height: 40px;
+  float: left;
+  border: 1px solid #000;
+  margin-left: -1px;
+  margin-top: -1px;
+}
+.special {
+  background: red;
+}
+.fill {
+  animation: fill 2s;
+  background: red;
+}
+@keyframes fill {
+  0% {
+    background: #fff;
+  }
+  50% {
+    background: #b1fbb1;
+  }
+  100% {
+    background: red;
+  }
+}

@@ -1,0 +1,21 @@
+- var len = 4;
+mixin row(r)
+	div.row
+		- for (var i = 0; i < len; i++)
+			if (r === 0 && i === 1)
+				div.col.special
+			else
+				div.col
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		title fillsquare
+		link(rel="stylesheet", type="text/css", href="../../build/css/fillsquare.css")
+	body
+		header
+			h1 分治法—棋盘覆盖问题
+		div.main
+			- for (var i = 0; i < len; i++)
+				+row(i); 
+		script(type="text/javascript", src="../../build/js/fillsquare.js")
