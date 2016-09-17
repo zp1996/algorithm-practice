@@ -20,7 +20,7 @@ gulp.task("js", () => {
         insertGlobals : true,
         debug : !gulp.env.production
       }))
-			// .pipe(uglify())
+			.pipe(uglify())
 			.pipe(gulp.dest("./build/js/"));
 });
 

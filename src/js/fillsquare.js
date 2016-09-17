@@ -5,7 +5,7 @@ const rows = Array.from(document.getElementsByClassName("row")),
 	special = [0, 1],
 	className = " fill",
 	cache = {},
-	index = 0;
+	todo = document.getElementById("to-do");
 
 function toFill (r, c, s, pos) {
 	const key = `${s}${r}${c}`;
@@ -59,8 +59,15 @@ function addClass (key) {
 	}
 }
 var start = show(),
+	timer = null;
+todo.addEventListener("click", () => {
+	if (timer !== null) {
+		return void 0;
+	}
+	start.next();
 	timer = setInterval(() => {
 		if (start.next().done) {
 			clearInterval(timer);
 		}
 	}, 2000);
+}, false);

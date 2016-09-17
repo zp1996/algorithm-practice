@@ -1,4 +1,9 @@
 @charset "utf-8";
+* {
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+}
 header {
   text-align: center;
 }
@@ -22,9 +27,42 @@ header {
 .special {
   background: red;
 }
+.btn-area {
+  width: 300px;
+  margin: 50px auto;
+}
 .fill {
   animation: fill 2s;
   background: red;
+}
+.base-btn {
+  cursor: pointer;
+  padding: 10px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+}
+#to-do {
+  cursor: pointer;
+  padding: 10px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: #7cd0c1;
+  float: left;
+}
+.source {
+  cursor: pointer;
+  padding: 10px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  background: #718fbb;
+  float: right;
 }
 @keyframes fill {
   0% {
