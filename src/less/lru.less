@@ -14,11 +14,19 @@ header{
 }
 .show{
 	.size(500px, 100px);
+	.tc();
 	margin: 20px auto;
 }
 .stack{
-	.size(60px, 60px);
+	@s: 60px;
+	.size(@s, @s);
+	.fz(20px);
+	line-height: @s;
+	color: #fff;
 	background: red;
 	float: left;
 	margin: 20px;
+}
+.intorduction{
+	.tc();
 }

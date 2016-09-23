@@ -93,12 +93,19 @@ header {
 .show {
   width: 500px;
   height: 100px;
+  text-align: center;
   margin: 20px auto;
 }
 .stack {
   width: 60px;
   height: 60px;
+  font-size: 20px;
+  line-height: 60px;
+  color: #fff;
   background: red;
   float: left;
   margin: 20px;
+}
+.intorduction {
+  text-align: center;
 }
