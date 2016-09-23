@@ -1,3 +1,6 @@
+-var size = 5;
+mixin stack(i)
+	div.stack(data-index="#{i}")
 doctype html
 html
 	head
@@ -8,6 +11,9 @@ html
 		header
 			h1 页面置换算法——LRU算法
 		div.main
+			div.show
+				- for (var i = 0; i < size; i++) 
+					+stack(i + 1)
 			div.btn-area
 				button#to-do 演示
 				a.source(href="https://github.com/zp1996/algorithm-practice/blob/master/cpp/LRU.cpp", target="_blank") C++代码
