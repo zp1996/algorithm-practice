@@ -50,6 +50,21 @@
   background: #718fbb;
   float: right;
 }
+.animation-fill {
+  animation: fill 1s;
+  background: red;
+}
+@keyframes fill {
+  0% {
+    background: #fff;
+  }
+  50% {
+    background: #b1fbb1;
+  }
+  100% {
+    background: red;
+  }
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -83,7 +98,7 @@ header {
   background: red;
 }
 .fill {
-  animation: fill 2s;
+  animation: fill 1s;
   background: red;
 }
 .btn-area {
@@ -110,15 +125,4 @@ header {
   text-decoration: none;
   background: #718fbb;
   float: right;
-}
-@keyframes fill {
-  0% {
-    background: #fff;
-  }
-  50% {
-    background: #b1fbb1;
-  }
-  100% {
-    background: red;
-  }
 }

@@ -60,6 +60,8 @@ function addClass (key) {
 }
 var start = show(),
 	timer = null;
+console.log(cache);
+
 todo.addEventListener("click", () => {
 	if (timer !== null) {
 		return void 0;
@@ -69,5 +71,5 @@ todo.addEventListener("click", () => {
 		if (start.next().done) {
 			clearInterval(timer);
 		}
-	}, 2000);
+	}, 1000);
 }, false);

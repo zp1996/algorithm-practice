@@ -50,6 +50,21 @@
   background: #718fbb;
   float: right;
 }
+.animation-fill {
+  animation: fill 1s;
+  background: red;
+}
+@keyframes fill {
+  0% {
+    background: #fff;
+  }
+  50% {
+    background: #b1fbb1;
+  }
+  100% {
+    background: red;
+  }
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -108,4 +123,8 @@ header {
 }
 .intorduction {
   text-align: center;
+}
+.fill {
+  animation: fill 1s;
+  background: red;
 }
