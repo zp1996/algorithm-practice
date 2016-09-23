@@ -45,7 +45,7 @@ function fill (tr, tc, dr, dc, size) {
         fill(tr + s, tc + s, tr + s, tc + s, s);
     }
 }
-fill(0, 0, special[0], special[1], 4);
+fill(0, 0, special[0], special[1], 8);
 function *show() {
 	for (let k in cache) {
 		yield addClass(k);

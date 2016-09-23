@@ -62,30 +62,6 @@ header {
   height: 60px;
   line-height: 60px;
 }
-.main {
-  width: 1000px;
-  margin: 100px auto;
-}
-.row {
-  width: 328px;
-  height: 41px;
-  margin: auto;
-}
-.col {
-  width: 40px;
-  height: 40px;
-  float: left;
-  border: 1px solid #000;
-  margin-left: -1px;
-  margin-top: -1px;
-}
-.special {
-  background: red;
-}
-.fill {
-  animation: fill 2s;
-  background: red;
-}
 .btn-area {
   width: 300px;
   margin: 50px auto;
@@ -110,15 +86,4 @@ header {
   text-decoration: none;
   background: #718fbb;
   float: right;
-}
-@keyframes fill {
-  0% {
-    background: #fff;
-  }
-  50% {
-    background: #b1fbb1;
-  }
-  100% {
-    background: red;
-  }
 }

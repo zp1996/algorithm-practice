@@ -1,25 +1,24 @@
 @charset "utf-8";
 @hh: 40px;
+@len: 8;
+@import "./util";
 *{
-	padding: 0px;
-	margin: 0px;
-	outline: none;
+	.common
 }
 header{
-	text-align: center;
+	.header
 }
 .main{
 	width: 1000px;
 	margin: 100px auto;
 }
 .row{
-	width: 4 * (@hh + 1px);
+	width: @len * (@hh + 1px);
 	height: @hh + 1px;
 	margin: auto;
 }
 .col{
-	width: @hh;
-	height: @hh;
+	.size(@hh, @hh);
 	float: left;
 	border: 1px solid #000;
 	margin-left: -1px;
@@ -28,32 +27,12 @@ header{
 .special{
 	background: red;
 }
-.btn-area{
-	width: 300px;
-	margin: 50px auto;
-}
 .fill{
 	animation: fill 2s;
 	background: red;
 }
-.base-btn{
-	cursor: pointer;
-	padding: 10px 30px;
-	font-size: 16px;
-	border: none;
-	border-radius: 10px;
-	color: #fff;
-}
-#to-do{
-	.base-btn();
-	background: #7cd0c1;
-	float: left;
-}
-.source{
-	.base-btn();
-	text-decoration: none;
-	background: #718fbb;
-	float: right;
+.btn-area{
+	.cbtn-area
 }
 @keyframes fill{
 	0%{

@@ -21,7 +21,7 @@ gulp.task("js", () => {
         debug : !gulp.env.production
       }))
 			.pipe(uglify())
-			.pipe(gulp.dest("./build/js/"));
+			.pipe(gulp.dest("./build/js"));
 });
 
 gulp.task("jade", () => {
@@ -29,7 +29,7 @@ gulp.task("jade", () => {
 			.pipe(jade({
 				pretty: true
 			}))
-			.pipe(gulp.dest("./views/html/"));
+			.pipe(gulp.dest("./views/html"));
 });
 
 gulp.task("less", () => {
