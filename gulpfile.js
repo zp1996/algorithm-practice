@@ -7,7 +7,8 @@ const gulp = require("gulp"),
 	filePath = [
 		`${__dirname}/src/js/**/*.js`,
 		`${__dirname}/views/jade/**/*.jade`,
-		`${__dirname}/src/less/**/*.less`
+		`${__dirname}/src/less/**/*.less`,
+		`${__dirname}/index.jade`
 	];
 
 gulp.task("js", () => {
@@ -38,6 +39,14 @@ gulp.task("less", () => {
 			.pipe(gulp.dest("./build/css"));
 });
 
-gulp.watch(filePath, ["js", "jade", "less"]);
+gulp.task("main", () => {
+	gulp.src(filePath[3])
+			.pipe(jade({
+				pretty: true
+			}))
+			.pipe(gulp.dest("./"))
+});
 
-gulp.task("default", ["js", "jade", "less"]);
+gulp.watch(filePath, ["js", "jade", "less", "main"]);
+
+gulp.task("default", ["js", "jade", "less", "main"]);
