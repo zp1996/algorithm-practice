@@ -47,9 +47,14 @@ function fill (tr, tc, dr, dc, size) {
 }
 fill(0, 0, special[0], special[1], 8);
 function *show() {
-	for (let k in cache) {
-		yield addClass(k);
-	}
+	var arr = ["200", "202", "220", "222", "400",
+						 "204", "206", "224", "226", "404",
+						 "240", "242", "260", "262", "440",
+						 "244", "246", "264", "266", "444",
+						 "800"
+						], len = arr.length;
+	for (let i = 0; i < len; i++)
+		yield addClass(arr[i]);
 }
 function addClass (key) {
 	const len = cache[key].length;
@@ -60,7 +65,6 @@ function addClass (key) {
 }
 var start = show(),
 	timer = null;
-console.log(cache);
 
 todo.addEventListener("click", () => {
 	if (timer !== null) {
