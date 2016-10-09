@@ -1,1 +1,1 @@
-# chat
+# lsgo-cli
