@@ -33,13 +33,18 @@ gulp.task("image", () => {
 gulp.task("es2015", () => {
 	return gulp.src(filePath[1])
 						 .pipe(babel({
-						 		presets: ['es2015']
+						 		presets: ['es2015'],
+						 		plugins: ['transform-runtime']
 						 }))
 						 .pipe(gulp.dest("./build/js"));
 });
-
+const bundleJS = [
+	`${__dirname}/build/js/st_index.js`,
+	`${__dirname}/build/js/lru.js`,
+	`${__dirname}/build/js/fillsquare.js`
+];
 gulp.task("js", ["es2015"], () => {
-	return gulp.src(`${__dirname}/build/js/index.js`)
+	return gulp.src(bundleJS)
 						 .pipe(browserify({
 			          insertGlobals : true,
 			          debug : !gulp.env.production
@@ -52,7 +57,7 @@ gulp.task("js", ["es2015"], () => {
 
 gulp.task("server", tasks, () => {
 	browserSync.init({
-    proxy: "http://localhost:3000/"
+    proxy: "http://localhost:666/"
   });
 });
 

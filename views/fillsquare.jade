@@ -1,0 +1,17 @@
+extends layout
+block content	
+	-var len = 8;
+	mixin row(r)
+		div.row
+			- for (var i = 0; i < len; i++)
+				if (r === 0 && i === 1)
+					div.col.special
+				else
+					div.col
+	h1.main-header 分治法—棋盘覆盖问题
+	div.main
+		- for (var i = 0; i < len; i++)
+			+row(i)
+		div.btn-area
+			button#to-do 演示
+			a.source(href="https://github.com/zp1996/algorithm-practice/blob/master/cpp/FillSquare.cpp", target="_blank") C++代码
