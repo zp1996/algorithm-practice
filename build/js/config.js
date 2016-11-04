@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
 	radius: 15,
 	font: "bold 16px Arial",
-	color: "red",
+	color: "#fff",
 	dev: 5
 };

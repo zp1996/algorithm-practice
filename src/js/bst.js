@@ -1,3 +1,9 @@
+import {
+	getValue, 
+	getMaxNode, 
+	getMinNode,
+	BaseOrderTraversal
+} from "./st_util";
 class BSTNode {
 	constructor (key, value) {
 		this.left = null;
@@ -28,12 +34,12 @@ class BinarySearchTree {
 	// 获取最大值
 	max () {
 		if (this.root === null) return void 0;
-		return getMax(this.root);
+		return getMaxNode(this.root).value;
 	}
 	// 获取最小值
 	min () {
 		if (this.root === null) return void 0;
-		return getMin(this.root).value;
+		return getMinNode(this.root).value;
 	}
 	// 找到小于等于key中的最大值
 	getFloor (key) {
@@ -63,18 +69,12 @@ class BinarySearchTree {
 		this.root = DeleteMax(this.root);
 		this.length--;
 	}
-	// 获取排序(中序遍历)
+	// 得到排序序列(中序遍历)
 	orderTraversal () {
-		this.order = "";
-		this.MinOrder(this.root);
-		return this.order.substr(0, this.order.length - 1);
+		var str = BaseOrderTraversal(this.root);
+		return str.substr(0, str.length - 1);
 	}
-	MinOrder (current) {
-		if (current === null) return void 0;
-		this.MinOrder(current.left);
-		this.order += `${current.key},`;
-		this.MinOrder(current.right);
-	}
+	// 删除节点
 	delete (key) {
 		if (key == null || this.get(key) === undefined) 
 			return void 0;
@@ -98,16 +98,6 @@ function Delete (current, key) {
 	}
 	return current;
 }
-function getValue (current, key) {
-	if (current === null) return void 0;
-	if (current.key === key) {
-		return current.value;
-	} else if (current.key < key) {
-		return getValue(current.right, key);
-	} else {
-		return getValue(current.left, key);
-	}
-}
 function InsertNode (current, key, value) {
 	if (current === null) return Node(key, value);
 	if (current.key === key) {
@@ -118,14 +108,6 @@ function InsertNode (current, key, value) {
 		current.left = InsertNode(current.left, key, value);
 	}
 	return current;
-}
-function getMax (current) {
-	if (current.right === null) return current.value;
-	return getMax(current.right);
-}
-function getMin (current) {
-	if (current.left === null) return current;
-	return getMin(current.left);
 }
 function DeleteMax (current) {
 	if (current.right === null) return current.left;

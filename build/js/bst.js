@@ -12,6 +12,8 @@ var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
+var _st_util = require("./st_util");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var BSTNode = function BSTNode(key, value) {
@@ -39,7 +41,7 @@ var BinarySearchTree = function () {
 	(0, _createClass3.default)(BinarySearchTree, [{
 		key: "get",
 		value: function get(key) {
-			return getValue(this.root, key);
+			return (0, _st_util.getValue)(this.root, key);
 		}
 		// 插入节点
 
@@ -56,7 +58,7 @@ var BinarySearchTree = function () {
 		key: "max",
 		value: function max() {
 			if (this.root === null) return void 0;
-			return getMax(this.root);
+			return (0, _st_util.getMaxNode)(this.root).value;
 		}
 		// 获取最小值
 
@@ -64,7 +66,7 @@ var BinarySearchTree = function () {
 		key: "min",
 		value: function min() {
 			if (this.root === null) return void 0;
-			return getMin(this.root).value;
+			return (0, _st_util.getMinNode)(this.root).value;
 		}
 		// 找到小于等于key中的最大值
 
@@ -102,23 +104,16 @@ var BinarySearchTree = function () {
 			this.root = DeleteMax(this.root);
 			this.length--;
 		}
-		// 获取排序(中序遍历)
+		// 得到排序序列(中序遍历)
 
 	}, {
 		key: "orderTraversal",
 		value: function orderTraversal() {
-			this.order = "";
-			this.MinOrder(this.root);
-			return this.order.substr(0, this.order.length - 1);
+			var str = (0, _st_util.BaseOrderTraversal)(this.root);
+			return str.substr(0, str.length - 1);
 		}
-	}, {
-		key: "MinOrder",
-		value: function MinOrder(current) {
-			if (current === null) return void 0;
-			this.MinOrder(current.left);
-			this.order += current.key + ",";
-			this.MinOrder(current.right);
-		}
+		// 删除节点
+
 	}, {
 		key: "delete",
 		value: function _delete(key) {
@@ -144,16 +139,6 @@ function Delete(current, key) {
 	}
 	return current;
 }
-function getValue(current, key) {
-	if (current === null) return void 0;
-	if (current.key === key) {
-		return current.value;
-	} else if (current.key < key) {
-		return getValue(current.right, key);
-	} else {
-		return getValue(current.left, key);
-	}
-}
 function InsertNode(current, key, value) {
 	if (current === null) return Node(key, value);
 	if (current.key === key) {
@@ -164,14 +149,6 @@ function InsertNode(current, key, value) {
 		current.left = InsertNode(current.left, key, value);
 	}
 	return current;
-}
-function getMax(current) {
-	if (current.right === null) return current.value;
-	return getMax(current.right);
-}
-function getMin(current) {
-	if (current.left === null) return current;
-	return getMin(current.left);
 }
 function DeleteMax(current) {
 	if (current.right === null) return current.left;

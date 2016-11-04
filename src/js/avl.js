@@ -1,3 +1,11 @@
+import {
+	getValue, 
+	getMaxNode, 
+	getMinNode,
+	BaseOrderTraversal,
+	findPos,
+	BaseRotate
+} from "./st_util";
 class AVLNode {
 	constructor (key, value) {
 		this.left = null;
@@ -34,19 +42,6 @@ class AVLTree {
 			this.length++;
 		// 检查和对树进行整理
 		this.Adjust(newNode);
-	}
-
-	PCRotate (node, parent) {
-		const grand = parent.parent;
-		node.parent = grand;
-		parent.parent = node;
-		if (grand === null){
-			this.root = node;
-		} else if (parent === grand.left) {
-			grand.left = node;
-		} else {
-			grand.right = node;
-		}
 	}
 	// 右旋,左孩子变为根节点
 	RightRotate (node, parent) {
@@ -185,65 +180,9 @@ class AVLTree {
 			}
 		}
 	}
-	// 获取排序(中序遍历)
 	orderTraversal () {
-		this.order = "";
-		this.MinOrder(this.root);
-		return this.order.substr(0, this.order.length - 1);
-	}
-	MinOrder (current) {
-		if (current === null) return void 0;
-		this.MinOrder(current.left);
-		this.order += `${current.key},`;
-		this.MinOrder(current.right);
-	}
-}
-const childName = ["left", "right"],
-	childNameLength = childName.length - 1;
-function getMaxNode (node) {
-	if (node.right === null) return node;
-	return getMaxNode(node.right);
-}
-function getMinNode (node) {
-	if (node.left === null) return node;
-	return getMinNode(node.left);
-}
-function BaseRotate (node, parent, index) {
-	const type = childName[index];
-	this.PCRotate(node, parent);
-	parent[childName[childNameLength - index]] = node[type];
-	// 右旋情况下,找寻未来根节点的右孩子,将其置为原来根节点的左孩子
-	// 左旋情况下则反之
-	node[type] && (node[type].parent = parent);
-	node[type] = parent;
-}
-function findPos (current, node) {
-	if (node.key === current.key) {
-		current.value = node.value;
-	} else if (node.key > current.key) {
-		if (current.right == null) {
-			current.right = node;
-			node.parent = current;
-		} else {
-			findPos(current.right, node);
-		}
-	} else if (node.key < current.key) {
-		if (current.left == null) {
-			current.left = node;
-			node.parent = current;
-		} else {
-			findPos(current.left, node);
-		}
-	}
-}
-function getValue (current, key) {
-	if (current === null) return void 0;
-	if (current.key === key) {
-		return current.value;
-	} else if (current.key < key) {
-		return getValue(current.right, key);
-	} else {
-		return getValue(current.left, key);
+		var str = BaseOrderTraversal(this.root);
+		return str.substr(0, str.length - 1);
 	}
 }
 export default AVLTree;

@@ -1,6 +1,7 @@
 import Draw from "./draw";
 import BST from "./bst";
 import AVL from "./avl";
+import RBT from "./rbt";
 
 function $ (selector) {
 	return document.querySelector(selector);
@@ -28,6 +29,7 @@ const canvas = $("#canvas"),
 				tree.insert("H", "H");
 				tree.insert("M", "M");
 				tree.insert("W", "W");
+				tree.insert("Y", "Y");
 				update();
 			}
 		},
@@ -44,7 +46,22 @@ const canvas = $("#canvas"),
 				tree.insert(10, 10);
 				tree.insert(9, 9);
 				tree.insert(8, 8);
-				console.log(tree.root.bf);
+				update();
+			}
+		},
+		rbt: {
+			init: () => {
+				tree = new RBT();
+				tree.insert(8, 8);
+				tree.insert(18, 18);
+				tree.insert(28, 28);
+				tree.insert(38, 38);
+				tree.insert(20, 20);
+				tree.insert(55, 55);
+				tree.insert(65, 65);
+				tree.insert(50, 50);
+				tree.insert(49, 49);
+				tree.insert(48, 48);
 				update();
 			}
 		},

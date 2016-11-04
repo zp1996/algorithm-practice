@@ -15,10 +15,10 @@ Draw.prototype.init = function (canvas) {
 	this.startX = width / 2;
 	this.startY = r;
 };
-Draw.prototype.round = function (x, y, value) {
+Draw.prototype.round = function (x, y, value, c) {
 	this.ctx.beginPath();
 	this.ctx.arc(x, y, r, 0, 2 * Math.PI, 0);
-	this.ctx.fillStyle = "blue";
+	this.ctx.fillStyle = c || "#27A28D";
 	this.ctx.fill();
 	this.font(x, y, value);
 };
@@ -35,8 +35,11 @@ Draw.prototype.PreOrder = function (root, x, y, w) {
 	if (root == null) return void 0;
 	var lx = x - w / 2,
 		rx = x + w / 2,
-		lry = y + 50;
-	this.round(x, y, root.value);
+		lry = y + 50,
+		c = root.isRed === void 0 
+					? undefined 
+					: root.isRed ? "red" : "#111";
+	this.round(x, y, root.value, c);
 	this.PreOrder(root.left, lx, lry, w / 2);
 	this.PreOrder(root.right, rx, lry, w / 2);
 	if (root.left) {

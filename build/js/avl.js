@@ -12,6 +12,8 @@ var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
+var _st_util = require("./st_util");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AVLNode = function AVLNode(key, value) {
@@ -40,7 +42,7 @@ var AVLTree = function () {
 	(0, _createClass3.default)(AVLTree, [{
 		key: "get",
 		value: function get(key) {
-			return getValue(this.root, key);
+			return (0, _st_util.getValue)(this.root, key);
 		}
 		// 插入节点时需要根据平衡因子对树进行重组,防止树的高度差过大
 
@@ -54,38 +56,24 @@ var AVLTree = function () {
 				return void 0;
 			}
 			var newNode = Node(key, value);
-			findPos(this.root, newNode);
+			(0, _st_util.findPos)(this.root, newNode);
 			if (newNode.parent !== null) this.length++;
 			// 检查和对树进行整理
 			this.Adjust(newNode);
-		}
-	}, {
-		key: "PCRotate",
-		value: function PCRotate(node, parent) {
-			var grand = parent.parent;
-			node.parent = grand;
-			parent.parent = node;
-			if (grand === null) {
-				this.root = node;
-			} else if (parent === grand.left) {
-				grand.left = node;
-			} else {
-				grand.right = node;
-			}
 		}
 		// 右旋,左孩子变为根节点
 
 	}, {
 		key: "RightRotate",
 		value: function RightRotate(node, parent) {
-			BaseRotate.call(this, node, parent, 1);
+			_st_util.BaseRotate.call(this, node, parent, 1);
 		}
 		// 左旋,右孩子变为根节点
 
 	}, {
 		key: "LeftRotate",
 		value: function LeftRotate(node, parent) {
-			BaseRotate.call(this, node, parent, 0);
+			_st_util.BaseRotate.call(this, node, parent, 0);
 		}
 	}, {
 		key: "AdjustInsert",
@@ -164,7 +152,7 @@ var AVLTree = function () {
 			while (current !== null) {
 				if (current.key === key) {
 					var node = current;
-					if (current.left !== null) node = getMaxNode(current.left);else if (current.right !== null) node = getMinNode(current.right);
+					if (current.left !== null) node = (0, _st_util.getMaxNode)(current.left);else if (current.right !== null) node = (0, _st_util.getMinNode)(current.right);
 					current.key = node.key;
 					current.value = node.value;
 					this.remove(node);
@@ -226,73 +214,14 @@ var AVLTree = function () {
 				}
 			}
 		}
-		// 获取排序(中序遍历)
-
 	}, {
 		key: "orderTraversal",
 		value: function orderTraversal() {
-			this.order = "";
-			this.MinOrder(this.root);
-			return this.order.substr(0, this.order.length - 1);
-		}
-	}, {
-		key: "MinOrder",
-		value: function MinOrder(current) {
-			if (current === null) return void 0;
-			this.MinOrder(current.left);
-			this.order += current.key + ",";
-			this.MinOrder(current.right);
+			var str = (0, _st_util.BaseOrderTraversal)(this.root);
+			return str.substr(0, str.length - 1);
 		}
 	}]);
 	return AVLTree;
 }();
 
-var childName = ["left", "right"],
-    childNameLength = childName.length - 1;
-function getMaxNode(node) {
-	if (node.right === null) return node;
-	return getMaxNode(node.right);
-}
-function getMinNode(node) {
-	if (node.left === null) return node;
-	return getMinNode(node.left);
-}
-function BaseRotate(node, parent, index) {
-	var type = childName[index];
-	this.PCRotate(node, parent);
-	parent[childName[childNameLength - index]] = node[type];
-	// 右旋情况下,找寻未来根节点的右孩子,将其置为原来根节点的左孩子
-	// 左旋情况下则反之
-	node[type] && (node[type].parent = parent);
-	node[type] = parent;
-}
-function findPos(current, node) {
-	if (node.key === current.key) {
-		current.value = node.value;
-	} else if (node.key > current.key) {
-		if (current.right == null) {
-			current.right = node;
-			node.parent = current;
-		} else {
-			findPos(current.right, node);
-		}
-	} else if (node.key < current.key) {
-		if (current.left == null) {
-			current.left = node;
-			node.parent = current;
-		} else {
-			findPos(current.left, node);
-		}
-	}
-}
-function getValue(current, key) {
-	if (current === null) return void 0;
-	if (current.key === key) {
-		return current.value;
-	} else if (current.key < key) {
-		return getValue(current.right, key);
-	} else {
-		return getValue(current.left, key);
-	}
-}
 exports.default = AVLTree;
