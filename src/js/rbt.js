@@ -99,9 +99,7 @@ class RBTree{
 	}
 	// 右旋,左孩子变为根节点
 	RightRotate (node, parent) {
-		console.log(node, parent);
 		BaseRotate.call(this, node, parent, 1);
-		console.log(this.root);
 	}
 	// 左旋,右孩子变为根节点
 	LeftRotate (node, parent) {

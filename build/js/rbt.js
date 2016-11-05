@@ -123,9 +123,7 @@ var RBTree = function () {
 	}, {
 		key: "RightRotate",
 		value: function RightRotate(node, parent) {
-			console.log(node, parent);
 			_st_util.BaseRotate.call(this, node, parent, 1);
-			console.log(this.root);
 		}
 		// 左旋,右孩子变为根节点
 
