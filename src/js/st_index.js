@@ -51,6 +51,7 @@ const canvas = $("#canvas"),
 		},
 		rbt: {
 			init: () => {
+				// 8,18,28,38,20,55,65,50,49,48
 				tree = new RBT();
 				tree.insert(8, 8);
 				tree.insert(18, 18);

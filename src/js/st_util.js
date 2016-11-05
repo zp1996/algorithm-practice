@@ -35,6 +35,29 @@ export function findPos (current, node) {
 		}
 	}
 }
+export function BaseDelete (key) {
+	if (key == null)
+		throw new Error("参数传入有误");
+	var current = this.root;
+	while (current !== null) {
+		if (current.key === key) {
+			var node = current;
+			if (current.left !== null)
+				node = getMaxNode(current.left);
+			else if (current.right !== null)
+				node = getMinNode(current.right);
+			current.key = node.key;
+			current.value = node.value;
+			this.remove(node);
+			this.length--;
+			break;
+		} else if (current.key > key) {
+			current = current.left;
+		} else {
+			current = current.right;
+		}
+	}
+}
 // 将根节点与子树进行转换
 function PCRotate (node, parent) {
 	const grand = parent.parent;

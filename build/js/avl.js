@@ -147,23 +147,7 @@ var AVLTree = function () {
 	}, {
 		key: "delete",
 		value: function _delete(key) {
-			if (key == null) throw new Error("参数传入有误");
-			var current = this.root;
-			while (current !== null) {
-				if (current.key === key) {
-					var node = current;
-					if (current.left !== null) node = (0, _st_util.getMaxNode)(current.left);else if (current.right !== null) node = (0, _st_util.getMinNode)(current.right);
-					current.key = node.key;
-					current.value = node.value;
-					this.remove(node);
-					this.length--;
-					break;
-				} else if (current.key > key) {
-					current = current.left;
-				} else {
-					current = current.right;
-				}
-			}
+			_st_util.BaseDelete.call(this, key);
 		}
 	}, {
 		key: "remove",

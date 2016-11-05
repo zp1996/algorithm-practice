@@ -4,7 +4,8 @@ import {
 	getMinNode,
 	BaseOrderTraversal,
 	findPos,
-	BaseRotate
+	BaseRotate,
+	BaseDelete
 } from "./st_util";
 class AVLNode {
 	constructor (key, value) {
@@ -113,27 +114,7 @@ class AVLTree {
 		child.bf = child.bf < -1 ? 0 : child.bf + 1;
 	}
 	delete (key) {
-		if (key == null)
-			throw new Error("参数传入有误");
-		var current = this.root;
-		while (current !== null) {
-			if (current.key === key) {
-				var node = current;
-				if (current.left !== null)
-					node = getMaxNode(current.left);
-				else if (current.right !== null)
-					node = getMinNode(current.right);
-				current.key = node.key;
-				current.value = node.value;
-				this.remove(node);
-				this.length--;
-				break;
-			} else if (current.key > key) {
-				current = current.left;
-			} else {
-				current = current.right;
-			}
-		}
+		BaseDelete.call(this, key);
 	}
 	remove (node) {
 		// 这时树只有一个root节点

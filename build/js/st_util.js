@@ -7,6 +7,7 @@ exports.getValue = getValue;
 exports.getMaxNode = getMaxNode;
 exports.getMinNode = getMinNode;
 exports.findPos = findPos;
+exports.BaseDelete = BaseDelete;
 exports.BaseRotate = BaseRotate;
 exports.BaseOrderTraversal = BaseOrderTraversal;
 function getValue(current, key) {
@@ -43,6 +44,25 @@ function findPos(current, node) {
 			node.parent = current;
 		} else {
 			findPos(current.left, node);
+		}
+	}
+}
+function BaseDelete(key) {
+	if (key == null) throw new Error("参数传入有误");
+	var current = this.root;
+	while (current !== null) {
+		if (current.key === key) {
+			var node = current;
+			if (current.left !== null) node = getMaxNode(current.left);else if (current.right !== null) node = getMinNode(current.right);
+			current.key = node.key;
+			current.value = node.value;
+			this.remove(node);
+			this.length--;
+			break;
+		} else if (current.key > key) {
+			current = current.left;
+		} else {
+			current = current.right;
 		}
 	}
 }
