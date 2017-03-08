@@ -40,6 +40,6 @@ function render(res, url, obj) {
 	res.render(url, opts);
 }
 
-server.listen(666);
+server.listen(6323);
 
 console.log("server is on...");
